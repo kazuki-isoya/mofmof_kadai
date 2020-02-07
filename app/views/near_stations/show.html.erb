@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @near_station.route %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @near_station.name %>
+</p>
+
+<p>
+  <strong>Walk time:</strong>
+  <%= @near_station.walk_time %>
+</p>
+
+<%= link_to 'Edit', edit_near_station_path(@near_station) %> |
+<%= link_to 'Back', near_stations_path %>
