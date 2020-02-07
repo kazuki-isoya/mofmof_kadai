@@ -36,6 +36,26 @@
     <%= form.text_area :description %>
   </div>
 
+  <hr>
+  <% n = 0 %>
+  <%= form.fields_for :near_stations do |f| %>
+    <%= "最寄り駅#{n += 1}" %>
+    <div class="field">
+      <%= f.label :route %>
+      <%= f.text_field :route %>
+    </div>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :walk_time %>
+      <%= f.number_field :walk_time %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
