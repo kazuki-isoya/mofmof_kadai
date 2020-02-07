@@ -16,6 +16,7 @@ class PropertiesController < ApplicationController
   def new
     @property = Property.new
     @property.near_stations.build
+
   end
 
   # GET /properties/1/edit
@@ -70,6 +71,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:name, :price, :address, :age, :description)
+      params.require(:property).permit(:name, :price, :address, :age, :description, near_stations_attributes: [:route, :name, :walk_time])
     end
 end
