@@ -10,10 +10,13 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
-
+    @property.near_stations.build
   end
 
   def edit
+    unless @property.near_stations.last.walk_time.blank?
+      @property.near_stations.build
+    end
   end
 
   def create
@@ -28,14 +31,10 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @property.update(property_params)
-        format.html { redirect_to @property, notice: 'Property was successfully updated.' }
-        format.json { render :show, status: :ok, location: @property }
-      else
-        format.html { render :edit }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
-      end
+    if @property.update(property_params)
+      redirect_to properties_path, notice:"編集しました！"
+    else
+      render :edit
     end
   end
 
@@ -53,6 +52,6 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:name, :price, :address, :age, :description, near_stations_attributes: [:route, :name, :walk_time])
+    params.require(:property).permit(:name, :price, :address, :age, :description, near_stations_attributes: [:id, :route, :name, :walk_time, :property_id])
   end
 end
