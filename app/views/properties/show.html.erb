@@ -25,5 +25,24 @@
   <%= @property.description %>
 </p>
 
+<% n = 0 %>
+<% @property.near_stations.each do |station| %>
+  <%= "最寄り駅#{n += 1}" %>
+  <p>
+  <strong>路線名:</strong>
+  <%= station.route %>
+  </p>
+
+  <p>
+  <strong>駅名:</strong>
+  <%= station.name %>
+  </p>
+
+  <p>
+  <strong>駅までの徒歩分数:</strong>
+  <%= station.walk_time %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_property_path(@property) %> |
 <%= link_to 'Back', properties_path %>
