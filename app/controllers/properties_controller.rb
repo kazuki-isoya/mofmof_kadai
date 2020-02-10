@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :set_property, only: %i(show edit update destroy)
 
   def index
     @properties = Property.all
@@ -22,7 +22,7 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     if @property.save
-      redirect_to properties_path,  notice:"登録しました！"
+      redirect_to properties_path,  notice:"物件情報を登録しました！"
     else
       render :new
     end
@@ -32,7 +32,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update(property_params)
-      redirect_to properties_path, notice:"編集しました！"
+      redirect_to properties_path, notice:"物件情報を編集しました！"
     else
       render :edit
     end
@@ -41,8 +41,7 @@ class PropertiesController < ApplicationController
   def destroy
     @property.destroy
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to properties_url, notice: '物件情報を削除しました！' }
     end
   end
 
@@ -52,6 +51,6 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:name, :price, :address, :age, :description, near_stations_attributes: [:id, :route, :name, :walk_time, :property_id])
+    params.require(:property).permit(:name, :price, :address, :age, :description, near_stations_attributes: %i(id route name walk_time property_id))
   end
 end

@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>物件名:</strong>
   <%= @property.name %>
 </p>
 
 <p>
-  <strong>Price:</strong>
-  <%= @property.price %>
+  <strong>家賃:</strong>
+  <%= @property.price %>円
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>住所:</strong>
   <%= @property.address %>
 </p>
 
 <p>
-  <strong>Age:</strong>
+  <strong>築年数:</strong>
   <%= @property.age %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>備考:</strong>
   <%= @property.description %>
 </p>
 
@@ -40,9 +40,9 @@
 
   <p>
   <strong>駅までの徒歩分数:</strong>
-  <%= station.walk_time %>
+  <%= station.walk_time %>分
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+<%= link_to '物件情報を編集する', edit_property_path(@property) %> |
+<%= link_to '物件一覧へ戻る', properties_path %>
